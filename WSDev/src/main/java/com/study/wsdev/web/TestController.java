@@ -19,5 +19,11 @@ public class TestController{
 	  System.out.println("#####################sysdate:"+testService.selectSysdate());
 	  return "test";
   }
+  
+  @RequestMapping(value="/index")
+  public String index() {
+	  System.out.println("메인페이지입니다.");
+	  return "index";
+  }
 
 }
