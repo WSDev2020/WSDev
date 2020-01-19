@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -20,15 +21,15 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 		TransactionConfig.class })
 public class WebMvcConfig  implements WebMvcConfigurer {
 	
-	@Bean
-	public InternalResourceViewResolver internalResourceViewResolver(){
-		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();  
-		viewResolver.setPrefix("/WEB-INF/view/");  
-		viewResolver.setViewClass(JstlView.class);
-		viewResolver.setOrder(2);
-		viewResolver.setSuffix(".jsp");
-		return viewResolver;
-	}
+   @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/view/");
+        viewResolver.setSuffix(".jsp");
+ 
+        return viewResolver;
+    }
 	
 	
 	@Bean
