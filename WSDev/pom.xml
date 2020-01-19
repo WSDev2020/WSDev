@@ -14,6 +14,12 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.2.1.RELEASE</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-websocket -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-websocket</artifactId>
+		    <version>5.2.1.RELEASE</version>
+		</dependency>
 		<dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -80,8 +86,12 @@
             <artifactId>tiles-template</artifactId>
             <version>3.0.5</version>
         </dependency> 
-
-		
+        <!-- 로그 -->
+		<dependency>
+		    <groupId>log4j</groupId>
+		    <artifactId>log4j</artifactId>
+		    <version>1.2.17</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>WSDev</finalName>

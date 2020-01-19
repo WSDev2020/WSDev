@@ -1,24 +1,45 @@
 package com.study.wsdev.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class InitConfig  extends AbstractAnnotationConfigDispatcherServletInitializer{
+/**
+ * <pre>
+ * application root annoteted configuration on WSDev
+ * </pre>
+ * 
+ * @author Justin hanry
+ * @author Lily
+ * @author NHW
+ * @author Dexter
+ * @author Jizero
+ *       
+ * @see Configuration
+ *
+ */
+public class InitConfig 
+	extends AbstractAnnotationConfigDispatcherServletInitializer{
 
+	/* servlet Configuration Classes */
+	final Class<?>[] ServletConfigurationClassFiles
+		= new Class[] {WebMvcConfig.class};
+	
+	/* Root Configuration Classes */
+	final Class<?>[] ApplicationConfigurationClassFiles
+	    = new Class[] {ApplicationConfig.class};
+	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		// TODO Auto-generated method stub
-		return new Class[] {WebMvcConfig.class};
+		return ServletConfigurationClassFiles;
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		// TODO Auto-generated method stub
-		return null;
+		return ApplicationConfigurationClassFiles;
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		// TODO Auto-generated method stub
 		return new String[] {"/"};
 	}
 

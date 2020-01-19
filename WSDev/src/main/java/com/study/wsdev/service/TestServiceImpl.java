@@ -6,8 +6,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.study.wsdev.dao.TestDao;
 
-@Service("testService")
 @Transactional
+@Service("testService")
 public class TestServiceImpl implements TestService{
 
 	@Autowired

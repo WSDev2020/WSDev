@@ -8,11 +8,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesView;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
-@SuppressWarnings({ "deprecation", "deprecation" })
 @Configuration
 @EnableWebMvc
 @ComponentScan("com.study.wsdev.*")
@@ -22,11 +22,12 @@ public class WebMvcConfig  implements WebMvcConfigurer {
 	
 	@Bean
 	public InternalResourceViewResolver internalResourceViewResolver(){
-		InternalResourceViewResolver jspViewResolver = new InternalResourceViewResolver();  
-		jspViewResolver.setPrefix("/WEB-INF/view/");  
-		jspViewResolver.setOrder(2);
-		jspViewResolver.setSuffix(".jsp");
-		return jspViewResolver;
+		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();  
+		viewResolver.setPrefix("/WEB-INF/view/");  
+		viewResolver.setViewClass(JstlView.class);
+		viewResolver.setOrder(2);
+		viewResolver.setSuffix(".jsp");
+		return viewResolver;
 	}
 	
 	
@@ -43,8 +44,7 @@ public class WebMvcConfig  implements WebMvcConfigurer {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
         tilesConfigurer.setDefinitions(
           new String[] { "/WEB-INF/tiles-def.xml" });
-        tilesConfigurer.setCheckRefresh(true);
-         
+        tilesConfigurer.setCheckRefresh(true);        
         return tilesConfigurer;
     }
 
