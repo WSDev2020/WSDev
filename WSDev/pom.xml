@@ -7,7 +7,7 @@
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>WSDev Maven Webapp</name>
-	<url>http://maven.apache.org</url>
+	<url>http://maven.apache.org</url>	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -55,6 +55,33 @@
 		    <artifactId>mybatis-spring</artifactId>
 		    <version>2.0.0</version>
 		</dependency>
+ 		<dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-servlet</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+         <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-api</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-jsp</artifactId>
+            <version>3.0.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-core</artifactId>
+            <version>3.0.5</version>
+        </dependency> 
+        <dependency>
+            <groupId>org.apache.tiles</groupId>
+            <artifactId>tiles-template</artifactId>
+            <version>3.0.5</version>
+        </dependency> 
+
+		
 	</dependencies>
 	<build>
 		<finalName>WSDev</finalName>
