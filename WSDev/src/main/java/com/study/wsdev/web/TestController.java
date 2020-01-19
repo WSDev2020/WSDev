@@ -4,6 +4,7 @@ package com.study.wsdev.web;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.study.wsdev.service.TestService;
@@ -16,13 +17,14 @@ public class TestController{
 	
   @RequestMapping(value ="/")
   public String test() throws Exception{
-	  System.out.println("#####################sysdate:"+testService.selectSysdate());
+
 	  return "test";
   }
   
   @RequestMapping(value="/index")
-  public String index() {
-	  System.out.println("메인페이지입니다.");
+  public String index(Model model) {
+
+	  model.addAttribute("pageName", "dashboard");
 	  return "index";
   }
 
