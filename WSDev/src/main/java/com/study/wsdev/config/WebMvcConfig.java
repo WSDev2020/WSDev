@@ -17,15 +17,15 @@ import org.springframework.web.servlet.view.JstlView;
 @ComponentScan("com.study.wsdev.*")
 @Import({AspectConfig.class, BatchConfig.class, DataSourceConfig.class, ContextSqlMapper.class, TransactionConfig.class})
 public class WebMvcConfig extends WebMvcConfigurerAdapter{
-	   @Bean
-	    public ViewResolver viewResolver() {
-	        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-	        viewResolver.setViewClass(JstlView.class);
-	        viewResolver.setPrefix("/WEB-INF/view/");
-	        viewResolver.setSuffix(".jsp");
-	 
-	        return viewResolver;
-	    }
+   @Bean
+    public ViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/view/");
+        viewResolver.setSuffix(".jsp");
+ 
+        return viewResolver;
+    }
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {

@@ -3,8 +3,10 @@ package com.study.wsdev.config;
 import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -14,17 +16,21 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 public class DataSourceConfig {
+	
+	@Autowired
+	private Environment environment;
 
 	/**
 	 * 데이터 소스 등록
 	 */
 	@Bean(destroyMethod="close")
 	public DataSource dataSource() {
+		
 		BasicDataSource dataSource = new BasicDataSource();
-		dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-		dataSource.setUrl("jdbc:mysql://14.36.164.165/WSDEV?serverTimezone=UTC");
-		dataSource.setUsername("WSDEV");
-		dataSource.setPassword("SAwq1234567890!");
+		dataSource.setDriverClassName(environment.getProperty("datasource.prop.driverName"));
+		dataSource.setUrl(environment.getProperty("datasource.prop.url"));
+		dataSource.setUsername(environment.getProperty("datasource.prop.userName"));
+		dataSource.setPassword(environment.getProperty("datasource.prop.password"));
 		dataSource.setDefaultAutoCommit(false);
 		return dataSource;
 	}
