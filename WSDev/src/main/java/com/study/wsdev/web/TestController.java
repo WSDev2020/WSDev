@@ -19,8 +19,8 @@ public class TestController{
   private TestService testService;
 	
   @RequestMapping(value ="/")
-  public String test() throws Exception{
-
+  public String test(Model model) throws Exception{
+	  model.addAttribute("pageName", "test");
 	  logger.info("This is info Test");
 	  return "test";
   }
