@@ -8,6 +8,9 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * application root annoteted configuration on WSDev
  * </pre>
  * 
+ * @version 1.0.0
+ * @since 1/24/20
+ * 
  * @author Justin hanry
  * @author Lily
  * @author NHW
@@ -15,32 +18,26 @@ import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatche
  * @author Jizero
  *       
  * @see Configuration
- *
  */
 public class InitConfig 
 	extends AbstractAnnotationConfigDispatcherServletInitializer{
-
-	/* servlet Configuration Classes */
-	final Class<?>[] ServletConfigurationClassFiles
-		= new Class[] {WebMvcConfig.class};
-	
-	/* Root Configuration Classes */
-	final Class<?>[] ApplicationConfigurationClassFiles
-	    = new Class[] {ApplicationConfig.class};
 	
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return ServletConfigurationClassFiles;
+		return SystemEnvironment.APPLICATION_CONFIGURATION_CLASS
+                                .getElement(Class[].class);
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return ApplicationConfigurationClassFiles;
+		return SystemEnvironment.SERVLET_CONFIGURATION_CLASS
+				                .getElement(Class[].class);
 	}
 
 	@Override
 	protected String[] getServletMappings() {
-		return new String[] {"/"};
+		return SystemEnvironment.SERVLET_MAPPING_URL
+                                .getElement(String[].class);
 	}
 
 }

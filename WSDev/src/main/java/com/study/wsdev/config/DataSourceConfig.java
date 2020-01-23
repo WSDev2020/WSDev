@@ -11,7 +11,19 @@ import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
- * 데이터 베이스 설정
+ * <h3>
+ * Registers serialized beans associated with database configuration.
+ * Do not set more than 3tir data in this configuration file.(EDI)
+ * </h3>
+ * 
+ * @version 1.0.0
+ * @since 1/24/20
+ * 
+ * @author Justin hanry
+ * @author Lily
+ * @author NHW
+ * @author Dexter
+ * @author Jizero
  */
 @Configuration
 @EnableTransactionManagement

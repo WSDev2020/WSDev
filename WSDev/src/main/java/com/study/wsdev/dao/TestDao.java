@@ -1,9 +1,16 @@
 package com.study.wsdev.dao;
 
-import org.apache.ibatis.annotations.Mapper;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
-@Mapper
-public interface TestDao {
+@Repository
+public class TestDao {
 
-	String selectSysdate() throws Exception;
+	@Autowired 
+	public SqlSessionTemplate sqlSession;
+	
+	public String selectSysdate() throws Exception {
+		return sqlSession.selectOne("com.study.wsdev.dao.TestDao.selectSysdate");
+	}
 }
