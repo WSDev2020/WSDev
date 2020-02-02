@@ -24,11 +24,18 @@ import org.springframework.stereotype.Component;
  * @author Jizero
  *
  */
-public class ResourceUtils{
+public class ResourceUtils implements ApplicationContextAware {
 
 	private static ResourcePatternResolver resourceResolver
 		= new PathMatchingResourcePatternResolver();
 	
+	/**
+	 * <p>inject application context for resource Loading at application</p>
+	 */
+	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+		ResourceUtils.resourceResolver = applicationContext;
+	}
+
 	public static Resource getResource(String location) {
 		return resourceResolver.getResource(location);
 	}

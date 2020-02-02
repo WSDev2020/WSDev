@@ -3,7 +3,7 @@ package com.study.wsdev.config;
 import org.springframework.context.annotation.Configuration;
 
 /**
- * <h3>@ÃÖÃÊ ÀÛ¼ºÀÚ°¡ ÀÛ¼ºÇÏµµ·Ï ÇÔ</h3>
+ * <h3>@ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ú°ï¿½ ï¿½Û¼ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½</h3>
  * 
  * @version 1.0.0
  * @since 1/24/20
@@ -13,8 +13,15 @@ import org.springframework.context.annotation.Configuration;
  * @author NHW
  * @author Dexter
  * @author Jizero
+ * 
+ * ---------------------------------------------
+ * 2020/02/01     justin      ê³µí†µ ì—ëŸ¬ ë©”ì‹œì§• ì²˜ë¦¬ ì¶”ê°€
+ * ---------------------------------------------
  */
 @Configuration
 public class AspectConfig {
+	
+	
+	
 
 }

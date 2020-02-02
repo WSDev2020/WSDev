@@ -12,6 +12,9 @@
 	<properties>
 		<spring-security>org.springframework.security</spring-security>
 		<spring-security-version>5.0.13.RELEASE</spring-security-version>
+		
+		
+		
 	</properties>
 	
 	<dependencies>
@@ -20,8 +23,14 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.2.1.RELEASE</version>
 		</dependency>
-		
-		
+
+		<!-- Spring Aspect Modules -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aop</artifactId>
+		    <version>${spring-security-version}</version>
+		</dependency>
+
 		<!-- JSTL 에서 사용할  태그 라이브러리 -->
 		<dependency>
 		    <groupId>${spring-security}</groupId>

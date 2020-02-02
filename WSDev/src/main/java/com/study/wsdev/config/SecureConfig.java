@@ -31,18 +31,18 @@ public class SecureConfig extends WebSecurityConfigurerAdapter{
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
+
 		http.authorizeRequests()
-	        .anyRequest()
+		    .antMatchers("/")
 	        .authenticated();
-	
+
 		http.formLogin()
 		    .permitAll();
 	}
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
+
 		auth.inMemoryAuthentication().withUser("user").password("{noop}password").roles("USER");
 	}
 
