@@ -10,11 +10,8 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles3.TilesView;
-import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
-import com.study.wsdev.utils.StringUtils;
+import com.study.wsdev.utils.ClassUtils;
 
 /**
  * <h3>
@@ -63,7 +60,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	@Value("${servlet.view.viewName}")
 	private String viewResolverViewName;
 	
-	/** ViewResolver ViewName */
+	/** ViewResolver definition location */
 	@Value("${servlet.tiles.definition}")
 	private String tilesDefinition;
 	
@@ -71,22 +68,25 @@ public class WebMvcConfig implements WebMvcConfigurer {
 	 * <pre>
 	 * Register the ViewResolver.
 	 * The default mapping rule for ViewResolver is treated 
-	 * as Prefix + Request Url + Suffix.
+	 * as Prefix + Ppplication Module-Path + Request Url + Suffix.
 	 * </pre>
 	 * 
 	 * @return ViewResolver
+	 * 
+	 * @see InternalResourceViewResolver
 	 */
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         
-        viewResolver.setViewNames(viewResolverViewName);
+        viewResolver.setViewClass(ClassUtils.findClass(viewResolverViewName));
         viewResolver.setPrefix(viewResolverPrefix);
         viewResolver.setSuffix(viewResolverSuffix);
  
         return viewResolver;
     }
 	
+    /*
 	
 	@Bean
     public TilesViewResolver setupViewTilesResolver() {
@@ -109,6 +109,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         return tilesConfigurer;
     }
+	*/
+
 
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		

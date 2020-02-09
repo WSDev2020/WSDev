@@ -14,9 +14,6 @@ import org.springframework.context.annotation.Configuration;
  * @author Dexter
  * @author Jizero
  * 
- * ---------------------------------------------
- * 2020/02/01     justin      공통 에러 메시징 처리 추가
- * ---------------------------------------------
  */
 @Configuration
 public class AspectConfig {

@@ -33,9 +33,6 @@ import com.study.wsdev.utils.ResourceUtils;
 @Configuration
 public class CommonConfig{
 
-	@Autowired
-	private static ApplicationContext applicationContext;
-
 	/**
 	 * <pre>Register beans to manage configuration.</pre>
 	 * @return {@link PropertySourcesPlaceholderConfigurer}

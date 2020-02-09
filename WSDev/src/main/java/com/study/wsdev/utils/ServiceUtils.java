@@ -1,5 +1,8 @@
 package com.study.wsdev.utils;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
 import com.study.wsdev.vo.User;
 
 /**
@@ -41,6 +44,16 @@ public class ServiceUtils {
 		}
 		
 		
+	}
+	
+	
+	/**
+	 * <h3> Issue a security code that cannot be tampered with. This code is 130 bytes long. </h3>
+	 * @return Secured code
+	 */
+	public static String getSecureTokenCode() {
+		
+		return new BigInteger(130, new SecureRandom()).toString(32);
 	}
 
 }

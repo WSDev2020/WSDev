@@ -1,8 +1,9 @@
 package com.study.wsdev.vo;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import org.springframework.social.UserIdSource;
 
 /**
  * <h2> User Information Service Vo Elements </h2>
@@ -18,7 +19,7 @@ import java.util.Map;
  * 
  * @see HashMap
  */
-public class User {
+public class User implements UserIdSource{
 	
 	public static class UserDatail {
 		
@@ -102,9 +103,11 @@ public class User {
 		return elements.get(UserDatail.LOGIN_IP);
 	}
 	
-	
-	
 	/**  User Vo Elements */
 	private Map<String, String> elements = new HashMap<String, String>();
+
+	public String getUserId() {
+		return elements.get(UserDatail.USR_IDX);
+	}
 
 }

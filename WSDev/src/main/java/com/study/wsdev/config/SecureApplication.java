@@ -22,7 +22,8 @@ import org.springframework.security.web.context.AbstractSecurityWebApplicationIn
  * @see Configuration
  */
 public class SecureApplication
-	extends AbstractSecurityWebApplicationInitializer {
+//	extends AbstractSecurityWebApplicationInitializer 
+	{
 
 	
 	
