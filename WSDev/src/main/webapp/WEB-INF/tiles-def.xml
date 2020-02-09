@@ -72,7 +72,7 @@
 
  	<!-- login layout - redirection to login page -->
    <definition name="login/*" extends="_ident">      
-      <put-attribute name="body" value="/WEB-INF/view/login/{1}.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/login/{1}.jsp" />
     </definition>
 
 
@@ -86,11 +86,11 @@
     
     <!-- basic Layout -->
    <definition name="app/*" extends="_app">      
-      <put-attribute name="body" value="/WEB-INF/view/app/{1}.jsp" />
+      <put-attribute name="body" value="/WEB-INF/views/app/{1}.jsp" />
    </definition>
     
-   <definition name="/app/*/*" extends="_app">      
-      <put-attribute name="body" value="/WEB-INF/view/app/{1}/{2}.jsp" />
+   <definition name="app/*/*" extends="_app">      
+      <put-attribute name="body" value="/WEB-INF/views/app/{1}/{2}.jsp" />
    </definition>
 
 </tiles-definitions>

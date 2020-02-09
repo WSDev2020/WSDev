@@ -10,8 +10,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesView;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 import com.study.wsdev.utils.ClassUtils;
+import com.study.wsdev.utils.StringUtils;
 
 /**
  * <h3>
@@ -86,7 +90,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
         return viewResolver;
     }
 	
-    /*
+   
 	
 	@Bean
     public TilesViewResolver setupViewTilesResolver() {
@@ -109,7 +113,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         return tilesConfigurer;
     }
-	*/
+	
 
 
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
