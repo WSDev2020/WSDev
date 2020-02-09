@@ -3,6 +3,8 @@ package com.study.wsdev.vo;
 import java.util.Objects;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.View;
 
 /**
  * <h3>
@@ -30,17 +32,39 @@ public enum Modules {
 	;
 
 	final private String module;
-	
+
 	final private String defaultUrl = "/"; 
 
 	private Modules(String module) {
 		this.module = module;
 	}
-	
+
 	public String getPath(String url) {
 
 		return Objects.isNull(url) ? 
 			  this.module + defaultUrl : this.module + url;
 	}
-	
+
+	/**
+	 * <p> model and view type matching </p>
+	 * @param mv modelAndView Object
+	 * @param viewName view Name(String)
+	 * @return ModelAndView
+	 */
+	public ModelAndView modelAndView(String viewName) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName(viewName);
+
+		return mv;
+	}
+
+	public ModelAndView modelAndView(ModelAndView mv, String viewName) {
+		
+		mv.setViewName(viewName);
+		
+		return mv;
+	}
+
 }

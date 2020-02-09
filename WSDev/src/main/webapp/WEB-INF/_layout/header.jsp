@@ -12,12 +12,6 @@
     <link rel="stylesheet" href="/resources/css/docs.css">
     <link rel="stylesheet" href="/resources/css/highlighter.css">
     <link rel="stylesheet" href="/resources/css/adminlte.min.css">
-<<<<<<< HEAD
-    
-
-
-</head>
-=======
 </head>
 
 
@@ -45,4 +39,3 @@
 <script src="/resources/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/resources/js/demo.js"></script>
->>>>>>> 762b3f51184812b12a650c0d016b795aac5cb59f
