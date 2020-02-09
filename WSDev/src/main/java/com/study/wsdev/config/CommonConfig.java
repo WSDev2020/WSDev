@@ -6,9 +6,11 @@ import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
@@ -31,9 +33,6 @@ import com.study.wsdev.utils.ResourceUtils;
 @Configuration
 public class CommonConfig{
 
-	@Autowired
-	private static ApplicationContext applicationContext;
-
 	/**
 	 * <pre>Register beans to manage configuration.</pre>
 	 * @return {@link PropertySourcesPlaceholderConfigurer}
@@ -53,5 +52,19 @@ public class CommonConfig{
 		configurer.setNullValue("null");
 		
 		return configurer;
+	}
+	
+	
+	@Bean
+	public MessageSource messageSource() {
+		
+		
+		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+		
+		messageSource.setBasename("classpath:message/message");
+		messageSource.setCacheSeconds(10);
+		messageSource.setDefaultEncoding("utf-8");
+
+		return messageSource;
 	}
 }

@@ -26,24 +26,50 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 
 @Configuration
-@EnableWebSecurity
-public class SecureConfig extends WebSecurityConfigurerAdapter{
+//@EnableWebSecurity
+public class SecureConfig 
+//extends WebSecurityConfigurerAdapter
+{
 
-	@Override
+//	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+
 		
+        http.antMatcher("/**")
+	        .authorizeRequests()
+	        .antMatchers("/", "/h2-console/**", "/favicon.ico").permitAll()
+	        .and().logout().logoutSuccessUrl("/").permitAll()
+	        .and().headers().frameOptions().sameOrigin()
+	        .and().csrf().disable();
+        
+//		http.authorizeRequests()
+//		    .antMatchers("/login/**")
+//		    .permitAll()
+//		    .antMatchers("/app/**")
+//		    .authenticated()
+//		    .and().csrf().disable()
+//		    ;
+		
+		
+
+		/*
 		http.authorizeRequests()
-	        .anyRequest()
+		    .antMatchers("/*")
 	        .authenticated();
-	
+
 		http.formLogin()
+		    .loginPage("/login")
+		    .loginProcessingUrl("/")
 		    .permitAll();
+		*/
 	}
 
-	@Override
+//	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		
-		auth.inMemoryAuthentication().withUser("user").password("{noop}password").roles("USER");
+
+		//auth.inMemoryAuthentication().withUser("user").password("{noop}password").roles("USER");
 	}
+	
+	
 
 }

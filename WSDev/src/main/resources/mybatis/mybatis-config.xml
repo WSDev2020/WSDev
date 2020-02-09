@@ -3,7 +3,7 @@
 
 <configuration>
 
-   <settings>  
+   <settings>
         <setting name="cacheEnabled"              value="true"/>  
         <setting name="lazyLoadingEnabled"        value="false"/>  
         <setting name="multipleResultSetsEnabled" value="true"/>  
@@ -12,7 +12,7 @@
         <setting name="defaultExecutorType"       value="SIMPLE"/>  
         <setting name="defaultStatementTimeout"   value="25000"/>  
    </settings>
-   
+
    <typeAliases>
        <typeAlias type="com.study.wsdev.vo.LowerCaseMap" alias="lowerMap"/>
    </typeAliases>
