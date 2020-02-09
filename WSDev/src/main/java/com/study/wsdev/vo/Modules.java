@@ -55,14 +55,15 @@ public enum Modules {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName(viewName);
+		
+		mv.setViewName(getPath(viewName));
 
 		return mv;
 	}
 
 	public ModelAndView modelAndView(ModelAndView mv, String viewName) {
 		
-		mv.setViewName(viewName);
+		mv.setViewName(getPath(viewName));
 		
 		return mv;
 	}
