@@ -32,28 +32,6 @@ import com.study.wsdev.utils.ResourceUtils;
  */
 @Configuration
 public class CommonConfig{
-
-	/**
-	 * <pre>Register beans to manage configuration.</pre>
-	 * @return {@link PropertySourcesPlaceholderConfigurer}
-	 * @throws IOException
-	 */
-	@Bean
-	public PropertySourcesPlaceholderConfigurer propertySourcesPlaceholderConfigurer()
-			throws IOException {
-		PropertySourcesPlaceholderConfigurer configurer
-			= new PropertySourcesPlaceholderConfigurer();
-
-		Resource[] propertiesLocations 
-			= ResourceUtils.getResources(SystemEnvironment.PROP_LOCATION.getElement(String.class));
-
-		configurer.setLocations(propertiesLocations);
-		configurer.setIgnoreResourceNotFound(true);
-		configurer.setNullValue("null");
-		
-		return configurer;
-	}
-	
 	
 	@Bean
 	public MessageSource messageSource() {

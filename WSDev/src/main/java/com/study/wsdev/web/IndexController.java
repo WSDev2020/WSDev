@@ -9,6 +9,7 @@ public class IndexController {
 	@RequestMapping(value="/")
 	public String root() {
 
+		System.out.println("application index ");
 		return Modules.APP.getPath("/index");
 	}
 }

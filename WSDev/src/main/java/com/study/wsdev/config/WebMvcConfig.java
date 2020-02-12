@@ -41,7 +41,7 @@ import com.study.wsdev.utils.StringUtils;
  * <p>TransactionConfig - Setting information that requires transaction processing</p>
  */
 
-@Configuration
+@Configuration 
 @EnableWebMvc
 @ComponentScan("com.study.wsdev")
 @Import({ CommonConfig.class

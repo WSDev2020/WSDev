@@ -1,7 +1,14 @@
 package com.study.wsdev.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+
 /**
- * <h3>@ÃÖÃÊ ÀÛ¼ºÀÚ°¡ ÀÛ¼ºÇÏµµ·Ï ÇÔ</h3>
+ * <h3>@ï¿½ï¿½ï¿½ï¿½ ï¿½Û¼ï¿½ï¿½Ú°ï¿½ ï¿½Û¼ï¿½ï¿½Ïµï¿½ï¿½ï¿½ ï¿½ï¿½</h3>
  * 
  * @version 1.0.0
  * @since 1/24/20
@@ -14,5 +21,22 @@ package com.study.wsdev.config;
  */
 public class TransactionConfig {
 
+	
+	/** use for application layer */ 
+	@Autowired
+	@Qualifier("dataSource")
+	private DataSource dataSource; 
+	
+	/**
+	 * <p>create a <strong>PROXY Object</strong> to manage data sources that use transactions.</br>
+	 * That object delegates the transaction from the data source.</p>
+	 * 
+	 * @see {@linkplain DataSourceConfig#dataSource()}
+	 */
+	@Bean
+	public DataSourceTransactionManager transactionManager() {
+
+		return new DataSourceTransactionManager(dataSource);
+	}
 
 }

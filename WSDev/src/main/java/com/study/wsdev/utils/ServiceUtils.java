@@ -3,6 +3,12 @@ package com.study.wsdev.utils;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.stereotype.Component;
+
 import com.study.wsdev.vo.User;
 
 /**
@@ -18,11 +24,15 @@ import com.study.wsdev.vo.User;
  * @author Jizero
  */
 public class ServiceUtils {
+	
+	@Autowired
+	static public UserUtils userUtils;
 
-	static public UserUtils userUtils = new UserUtils();
+	@Autowired
+	static public RedisUtils redisUtils;
 
 	/**
-	 * <h3> Use service Extention Utils Plugin</h3>
+	 * <h3> Use service Extention Utils Plugin (Users)</h3>
 	 * 
 	 * @version 1.0.0
 	 * @since 2/2/20
@@ -33,6 +43,7 @@ public class ServiceUtils {
 	 * @author Dexter
 	 * @author Jizero
 	 */
+	@Component
 	static class UserUtils {
 		
 		/**
@@ -44,6 +55,27 @@ public class ServiceUtils {
 		}
 		
 		
+	}
+	
+
+	/**
+	 * <h3> Use service Extention Utils Plugin (Redis)</h3>
+	 * 
+	 * @version 1.0.0
+	 * @since 2/2/20
+	 * 
+	 * @author Justin hanry
+	 * @author Lily
+	 * @author NHW
+	 * @author Dexter
+	 * @author Jizero
+	 */
+	@Component
+	static class RedisUtils {
+		
+		
+		@Autowired
+		private RedisConnectionFactory redisConnection;
 	}
 	
 	

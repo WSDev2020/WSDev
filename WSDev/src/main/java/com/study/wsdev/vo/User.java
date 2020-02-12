@@ -1,9 +1,15 @@
 package com.study.wsdev.vo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.social.UserIdSource;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
 
 /**
  * <h2> User Information Service Vo Elements </h2>
@@ -19,23 +25,55 @@ import org.springframework.social.UserIdSource;
  * 
  * @see HashMap
  */
-public class User implements UserIdSource{
+
+public class User implements UserIdSource, Serializable{
 	
 	public static class UserDatail {
 		
-		public static String USR_IDX   = "USR_IDX"   ;
-		public static String USR_ID    = "USR_ID"    ;
-		public static String USR_NM    = "USR_NM"    ;
-		public static String USR_EMAIL = "USR_EMAIL" ;
-		public static String USR_NICK  = "USR_NICK"  ;
+		/** authenticated type (G,N,F ..) */
+		private static String AUTH_G   = "AUTH_G";
 		
-		public static String LOGIN_TM  = "LOGIN_TM"  ;
-		public static String LOGIN_IP  = "LOGIN_IP"  ;
+		/** usr idx(index or pk) */
+		private static String USR_IDX   = "USR_IDX"   ;
+		
+		/** usr idenfy key (non required PK) */
+		private static String USR_ID    = "USR_ID"    ;
+		
+		/** usr name for application view */
+		private static String USR_NM    = "USR_NM"    ;
+		
+		/** usr email */
+		private static String USR_EMAIL = "USR_EMAIL" ;
+		
+		/** usr short name */
+		private static String USR_NICK  = "USR_NICK"  ;
+		
+		/** login device time */
+		private static String LOGIN_TM  = "LOGIN_TM"  ;
+		
+		/** login ip connected */
+		private static String LOGIN_IP  = "LOGIN_IP"  ;
+		
+		/** usr token code */
+		private static String LOGIN_TK  = "LOGIN_TK"  ;
+	}
+
+	
+	public void setAUTH_G(String AUTH_G) {
+		
+		elements.put(UserDatail.AUTH_G, AUTH_G);
 	}
 	
-	public void setUSR_IDX(String user_idx) {
+	public String getAUTH_G() {
+		
+		return elements.get(UserDatail.AUTH_G);
+	}
+	
+	
+	
+	public void setUSR_IDX(String USR_IDX) {
 
-		elements.put(UserDatail.USR_IDX, user_idx);
+		elements.put(UserDatail.USR_IDX, USR_IDX);
 	}
 
 	public String getUSR_IDX() {
@@ -43,9 +81,11 @@ public class User implements UserIdSource{
 		return elements.get(UserDatail.USR_IDX);
 	}
 	
-	public void setUSR_ID(String user_idx) {
+	
+	
+	public void setUSR_ID(String USR_ID) {
 		
-		elements.put(UserDatail.USR_ID, user_idx);
+		elements.put(UserDatail.USR_ID, USR_ID);
 	}
 	
 	public String getUSR_ID() {
@@ -53,9 +93,11 @@ public class User implements UserIdSource{
 		return elements.get(UserDatail.USR_ID);
 	}
 	
-	public void setUSR_NM(String user_idx) {
+	
+	
+	public void setUSR_NM(String USR_NM) {
 		
-		elements.put(UserDatail.USR_NM, user_idx);
+		elements.put(UserDatail.USR_NM, USR_NM);
 	}
 	
 	public String getUSR_NM() {
@@ -63,9 +105,12 @@ public class User implements UserIdSource{
 		return elements.get(UserDatail.USR_NM);
 	}
 	
-	public void setUSR_EMAIL(String user_idx) {
+	
+	
+	
+	public void setUSR_EMAIL(String USR_EMAIL) {
 		
-		elements.put(UserDatail.USR_EMAIL, user_idx);
+		elements.put(UserDatail.USR_EMAIL, USR_EMAIL);
 	}
 	
 	public String getUSR_EMAIL() {
@@ -73,9 +118,11 @@ public class User implements UserIdSource{
 		return elements.get(UserDatail.USR_EMAIL);
 	}
 	
-	public void setUSR_NICK(String user_idx) {
+	
+	
+	public void setUSR_NICK(String USR_NICK) {
 		
-		elements.put(UserDatail.USR_NICK, user_idx);
+		elements.put(UserDatail.USR_NICK, USR_NICK);
 	}
 	
 	public String getUSR_NICK() {
@@ -83,9 +130,11 @@ public class User implements UserIdSource{
 		return elements.get(UserDatail.USR_NICK);
 	}
 	
-	public void setLOGIN_TM(String user_idx) {
+	
+	
+	public void setLOGIN_TM(String LOGIN_TM) {
 		
-		elements.put(UserDatail.LOGIN_TM, user_idx);
+		elements.put(UserDatail.LOGIN_TM, LOGIN_TM);
 	}
 	
 	public String getLOGIN_TM() {
@@ -93,9 +142,11 @@ public class User implements UserIdSource{
 		return elements.get(UserDatail.LOGIN_TM);
 	}
 	
-	public void setLOGIN_IP(String user_idx) {
+	
+	
+	public void setLOGIN_IP(String LOGIN_IP) {
 		
-		elements.put(UserDatail.LOGIN_IP, user_idx);
+		elements.put(UserDatail.LOGIN_IP, LOGIN_IP);
 	}
 	
 	public String getLOGIN_IP() {
@@ -103,11 +154,24 @@ public class User implements UserIdSource{
 		return elements.get(UserDatail.LOGIN_IP);
 	}
 	
+	
+	public void setLOGIN_TK(String LOGIN_TK) {
+		
+		elements.put(UserDatail.LOGIN_TK, LOGIN_TK);
+	}
+	
+	public String getLOGIN_TK() {
+		
+		return elements.get(UserDatail.LOGIN_TK);
+	}
+
+
 	/**  User Vo Elements */
 	private Map<String, String> elements = new HashMap<String, String>();
 
+	/** adapting spring (-) social */
 	public String getUserId() {
-		return elements.get(UserDatail.USR_IDX);
+		return elements.get(UserDatail.USR_EMAIL);
 	}
 
 }
