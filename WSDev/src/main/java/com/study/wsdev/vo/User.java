@@ -4,12 +4,7 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.springframework.context.annotation.Lazy;
-import org.springframework.context.annotation.Scope;
-import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.social.UserIdSource;
-import org.springframework.stereotype.Component;
-import org.springframework.web.context.annotation.SessionScope;
 
 /**
  * <h2> User Information Service Vo Elements </h2>
@@ -26,7 +21,7 @@ import org.springframework.web.context.annotation.SessionScope;
  * @see HashMap
  */
 
-public class User implements UserIdSource, Serializable{
+public class User implements UserIdSource, Serializable	{
 	
 	public static class UserDatail {
 		
@@ -174,4 +169,8 @@ public class User implements UserIdSource, Serializable{
 		return elements.get(UserDatail.USR_EMAIL);
 	}
 
+	@Override
+	public String toString() {
+		return "User [elements=" + elements + "]";
+	}
 }

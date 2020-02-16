@@ -1,10 +1,17 @@
 package com.study.wsdev.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.session.SessionManagementFilter;
+import org.springframework.session.Session;
+import org.springframework.session.SessionRepository;
+import org.springframework.session.data.redis.RedisOperationsSessionRepository;
 
 /**
  * <h3>
@@ -26,50 +33,38 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  */
 
 @Configuration
-//@EnableWebSecurity
+@EnableWebSecurity
 public class SecureConfig 
-//extends WebSecurityConfigurerAdapter
+extends WebSecurityConfigurerAdapter
 {
 
-//	@Override
+	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
-		
-        http.antMatcher("/**")
-	        .authorizeRequests()
-	        .antMatchers("/", "/h2-console/**", "/favicon.ico").permitAll()
-	        .and().logout().logoutSuccessUrl("/").permitAll()
-	        .and().headers().frameOptions().sameOrigin()
-	        .and().csrf().disable();
         
-//		http.authorizeRequests()
-//		    .antMatchers("/login/**")
-//		    .permitAll()
-//		    .antMatchers("/app/**")
-//		    .authenticated()
-//		    .and().csrf().disable()
-//		    ;
-		
-		
-
-		/*
 		http.authorizeRequests()
-		    .antMatchers("/*")
-	        .authenticated();
+		    .antMatchers("/login/**").permitAll()
+		    .antMatchers("/**")
+		    .authenticated()
+		    .and()
+		    .formLogin().loginPage("/login")
+		    .permitAll()
+	        ;
 
-		http.formLogin()
-		    .loginPage("/login")
-		    .loginProcessingUrl("/")
-		    .permitAll();
-		*/
+		// *proxy resolve filter
+		// 1.  SecurityContextPersistenceFilter
+		// 2.  logoutfilter
+		//              <-- OAuthSessionFilterChainProvider
+		// 3.  UsernamePasswordAuthenticationFilter
+		// 4.  DefaultLoginPageGeneratingFilter
+		// 5.  BasicAuthenticationFilter
+		// 6.  RemeberMeAtuhenticationFilter
+		// 7.  SecurityContextHolderAwareRequestFilter
+		// 8.  AnonymouseAuthenticationFilter
+		// 9.  SessionManagementFilter
+		// 10. ExceptionTranslationFilter
+		// 11. FilterSecurityInterceptor
+		http.addFilterBefore(new OAuthSessionFilterChainProvider(), UsernamePasswordAuthenticationFilter.class);
+
 	}
-
-//	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-
-		//auth.inMemoryAuthentication().withUser("user").password("{noop}password").roles("USER");
-	}
-	
-	
 
 }

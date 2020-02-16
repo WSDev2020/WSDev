@@ -3,10 +3,12 @@ package com.study.wsdev.utils;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Component;
 
 import com.study.wsdev.vo.User;
@@ -30,6 +32,14 @@ public class ServiceUtils {
 
 	@Autowired
 	static public RedisUtils redisUtils;
+	
+	
+
+	public ServiceUtils() {
+		
+		System.out.println("======================================================================================");
+	}
+
 
 	/**
 	 * <h3> Use service Extention Utils Plugin (Users)</h3>
@@ -73,9 +83,12 @@ public class ServiceUtils {
 	@Component
 	static class RedisUtils {
 		
+		@Resource(name = "redisTemplate")
+		private ValueOperations<String, String> valusOps;
 		
 		@Autowired
 		private RedisConnectionFactory redisConnection;
+
 	}
 	
 	
