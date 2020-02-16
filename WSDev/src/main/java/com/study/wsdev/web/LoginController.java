@@ -112,8 +112,6 @@ public class LoginController {
 
         User usr = new User();
         
-        System.out.println("userIdResult : " +userIdResult);
-        
         usr.setAUTH_G("G");
         usr.setUSR_ID(userIdResult.get("id"));
         usr.setUSR_NM(userIdResult.get("name"));

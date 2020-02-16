@@ -2,14 +2,22 @@ package com.study.wsdev.utils;
 
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.Objects;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.core.ValueOperations;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
+import org.springframework.web.context.annotation.SessionScope;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import com.study.wsdev.vo.User;
 
@@ -27,13 +35,6 @@ import com.study.wsdev.vo.User;
  */
 public class ServiceUtils {
 	
-	@Autowired
-	static public UserUtils userUtils;
-
-	@Autowired
-	static public RedisUtils redisUtils;
-
-
 	/**
 	 * <h3> Use service Extention Utils Plugin (Users)</h3>
 	 * 
@@ -46,19 +47,6 @@ public class ServiceUtils {
 	 * @author Dexter
 	 * @author Jizero
 	 */
-	@Component
-	static class UserUtils {
-		
-		/**
-		 * <p>get User information</p>
-		 */
-		public static User getUser() {
-			
-			return new User();
-		}
-		
-		
-	}
 	
 
 	/**
@@ -94,4 +82,17 @@ public class ServiceUtils {
 		return new BigInteger(130, new SecureRandom()).toString(32);
 	}
 
+	/**
+	 * <p>get User information on login</p>
+	 * @return login User {Object}
+	 */
+	public static User getUser() {
+		
+		ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+		HttpServletRequest req = servletRequestAttributes.getRequest();
+
+		User usr = (User)req.getSession().getAttribute("usr");
+
+		return Objects.isNull(usr) ? new User() : usr;
+	}
 }

@@ -24,23 +24,6 @@ import com.study.wsdev.vo.User;
 
 public class OAuthSessionFilterChainProvider implements Filter{
 	
-
-	@Autowired
-    private RedisConnectionFactory connectionFactory;
-
-	
-	public OAuthSessionFilterChainProvider() { }
-
-	public OAuthSessionFilterChainProvider(
-			RedisConnectionFactory connectionFactory) {
-
-		this.connectionFactory = connectionFactory;
-	}
-
-	public void destroy() {
-		
-	}
-
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain filter)
 			throws IOException, ServletException {
 		
@@ -48,25 +31,27 @@ public class OAuthSessionFilterChainProvider implements Filter{
 		
 		User usr = (User)session.getAttribute("usr");
 		
-		if(!Objects.isNull(usr)) {
 		
+		if(!Objects.isNull(usr)) {
+
 			SecurityContext securityContext = SecurityContextHolder.getContext();
-			
+
 			if(Objects.isNull(securityContext.getAuthentication())) {
 
 				OauthAuthentication oauthAuthentication = new OauthAuthentication(usr);
-				
+
 				oauthAuthentication.setAuthenticated(true);
-				
+
 				SecurityContextHolder.getContext().setAuthentication(oauthAuthentication);
 			}
 		}
-		
+
 		filter.doFilter(req, resp);
 	}
 
-	public void init(FilterConfig arg0) throws ServletException {
-		
-	}
+	public void init(FilterConfig arg0) throws ServletException { }
+
+	@Override
+	public void destroy() { }
 
 }
