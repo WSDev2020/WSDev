@@ -32,13 +32,6 @@ public class ServiceUtils {
 
 	@Autowired
 	static public RedisUtils redisUtils;
-	
-	
-
-	public ServiceUtils() {
-		
-		System.out.println("======================================================================================");
-	}
 
 
 	/**
