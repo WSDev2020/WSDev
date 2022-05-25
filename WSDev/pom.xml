@@ -11,7 +11,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<spring-security>org.springframework.security</spring-security>
-		<spring-security-version>5.0.13.RELEASE</spring-security-version>
+		<spring-security-version>5.5.7</spring-security-version>
 		<jackson-version>2.10.2</jackson-version>
 
 		<!-- social api version -->
